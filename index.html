@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Splay Vis</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+          background: #ffffff;
+          margin: 0;
+          height: 100%;
+          color: #384452;
+          font-family: 'Lato', sans-serif;
+          font-weight: 400;
+        }
+        *:focus {
+          outline: none;
+        }
+        input {
+          width: 205px;
+          padding: 10px;
+          margin: 10px;
+          border: 1px solid rgba(0,0,0,0.1);
+          border-radius: 2px;
+          font-family: 'Lato', sans-serif;
+        }
+        li:hover, input:hover {
+          border-color: rgba(34,36,38,.35);
+          box-shadow: none;
+        }
+        ul {
+          margin-top: 0px;
+          list-style: none;
+          width: 206px;
+          text-align: left;
+          margin-left: 46px;
+        }
+        li {
+          padding: 10px;
+          border: 1px solid rgba(0,0,0,0.1);
+          border-radius: 2px;
+          width: 100%;
+          background: #00B5AD;
+          margin-bottom: 10px;
+          color: white;
+        }
+        body > div {
+          margin: 100px auto;
+          text-align: center;
+        }
+        .tree-box {
+          display: inline-block;
+        }
+        .child {
+          position: relative;
+          top: 11px;
+          border-top: 1px dotted;
+        }
+        .letter-node {
+          cursor: default;
+          position: relative;
+          display: inline-block;
+          border: 1px solid;
+          border-radius: 11px;
+          margin: 5px;
+          margin-top: 0px;
+          width: 20px;
+          height: 20px;
+        }
+        .red {
+          color: red;
+        }
+        .black {
+          color: black;
+        }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript" src="./target/scala-2.12/splay-tree-fastopt.js"></script>
+    <script type="text/javascript">
+      splaytree.SplayTreeVis().main();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "splaytree",
+  "version": "1.0.0",
+  "description": "a persistent, immutable splay tree implemented with Scala",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niole/scala-splay-tree.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niole/scala-splay-tree/issues"
+  },
+  "homepage": "https://github.com/niole/scala-splay-tree#readme",
+  "dependencies": {
+    "jsdom": "^9.11.0",
+    "source-map-support": "^0.4.11"
+  }
+}
