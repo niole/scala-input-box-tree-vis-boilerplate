@@ -22,6 +22,7 @@ class InteractiveTreeVis[T : StringTo, B <: BinaryNode[T]](
   delay: Int = 500
   ) {
 
+    val ChildNodeClass: String = "child"
     val inputBox: InputBox[T] = new InputBox[T](placeholder, header, renderOnDelay, delay)
 
     def getElement(data: T): TypedTag[Div] = {
@@ -35,9 +36,9 @@ class InteractiveTreeVis[T : StringTo, B <: BinaryNode[T]](
     def getAllElements(node: BinaryNode[T], nodeType: String = ""): TypedTag[Div] = {
       div(
         cls:=s"tree-box $nodeType",
-        node.left.map(getAllElements(_, "child")).getOrElse(div()),
+        node.left.map(getAllElements(_, ChildNodeClass)).getOrElse(div()),
         getElement(node.value),
-        node.right.map(getAllElements(_, "child")).getOrElse(div())
+        node.right.map(getAllElements(_, ChildNodeClass)).getOrElse(div())
       )
     }
 
@@ -52,6 +53,4 @@ class InteractiveTreeVis[T : StringTo, B <: BinaryNode[T]](
 
     }
 
-
 }
-

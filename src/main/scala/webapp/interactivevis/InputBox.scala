@@ -68,7 +68,7 @@ class InputBox[T : StringTo](placeholder: String, header: String, shouldRenderOn
 
     if (shouldRenderOnDelay) {
 
-      updateQ = updateQ ++ List(newVisData)
+      updateQ = updateQ :+ newVisData
 
       if (updateQ.length == 1) {
         //run
@@ -90,7 +90,7 @@ class InputBox[T : StringTo](placeholder: String, header: String, shouldRenderOn
       visContainer.innerHTML = ""
       visContainer.appendChild(div(newVisData).render)
 
-      if (updateQ.length > 0) {
+      if (updateQ.nonEmpty) {
         renderOnDelay
       }
     }, delay)
