@@ -1,4 +1,4 @@
-package splaytree
+package interactivevis
 
 import org.scalajs.dom
 import dom._
@@ -9,11 +9,27 @@ import scalatags.JsDom.TypedTag
 import scalatags.JsDom.short.*
 import window.{ setTimeout, clearTimeout }
 
-class InputBox(placeholder: String, header: String, shouldRenderOnDelay: Boolean = false, delay: Int = 500) {
+trait StringTo[A] {
+  def fromString(string: String): A
+}
+
+object StringConverter {
+  implicit object StringFromString extends StringTo[String] {
+    override def fromString(string: String): String = string
+  }
+
+  implicit object IntFromString extends StringTo[Int] {
+    override def fromString(string: String): Int = string.toInt
+  }
+
+  def formatInputData[A](s: String)(implicit cast: StringTo[A]): A = cast.fromString(s)
+}
+
+class InputBox[T](placeholder: String, header: String, shouldRenderOnDelay: Boolean = false, delay: Int = 500) {
   val i: Input = input(*.placeholder:=placeholder).render
   val visContainer: Div = div.render
   val container: Div = div.render
-  var renderCallBack: Int => Unit  = (n: Int) => {}
+  var renderCallBack: T => Unit  = (n: T) => {}
   val debouncer: () => Unit = getDebouncer(onKeyUp)
   var updateQ: List[TypedTag[Div]] = List[TypedTag[Div]]()
 
@@ -28,8 +44,8 @@ class InputBox(placeholder: String, header: String, shouldRenderOnDelay: Boolean
   )
 
   def onKeyUp(): Unit = {
-    val n = i.value
-    renderCallBack(n.toInt)
+    val v: String = i.value
+    renderCallBack(formatInputData(v))
     i.value = ""
   }
 
@@ -44,12 +60,12 @@ class InputBox(placeholder: String, header: String, shouldRenderOnDelay: Boolean
     debounce
   }
 
-  //could be another event
-  i.onkeyup = (e: dom.Event) => {
-    debouncer()
-  }
+  i.onkeyup = (e: dom.Event) => debouncer()
 
-  def setRenderCallBack(cb: Int => Unit): Unit = renderCallBack = cb
+  def setRenderCallBack(cb: T => Unit): Unit = renderCallBack = cb
+
+  //def formatInputData[T](s: String)(implicit cast: StringTo[T]): T = cast.fromString(s)
+  def formatInputData[T](s: String): T = s.asInstanceOf[T]
 
   def updateVis(newVisData: TypedTag[Div]): Unit = {
 

@@ -1,4 +1,4 @@
-package splaytree
+package interactivevis
 
 /**
  * zig and zag are just large scale tree rotations that result in the element
@@ -205,7 +205,7 @@ package splaytree
 
  }
 
- class SplayNode(v: Int, l: Option[SplayNode], r: Option[SplayNode]) {
+ class SplayNode(v: Int, l: Option[SplayNode], r: Option[SplayNode]) extends BinaryNode[Int] {
    val value: Int = v
    val left: Option[SplayNode] = l
    val right: Option[SplayNode] = r
