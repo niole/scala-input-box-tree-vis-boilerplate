@@ -23,8 +23,6 @@ object StringTo {
 }
 
 class InputBox[T : StringTo](placeholder: String, header: String, shouldRenderOnDelay: Boolean = false, delay: Int = 500) {
-  def formatInputData(s: String): T = implicitly[StringTo[T]].fromString(s)
-
   val i: Input = input(*.placeholder:=placeholder).render
   val visContainer: Div = div.render
   val container: Div = div.render
@@ -42,6 +40,8 @@ class InputBox[T : StringTo](placeholder: String, header: String, shouldRenderOn
       ).render
     )
   )
+
+  def formatInputData(s: String): T = implicitly[StringTo[T]].fromString(s)
 
   def onKeyUp(): Unit = {
     val v: String = i.value
