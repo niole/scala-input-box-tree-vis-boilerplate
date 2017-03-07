@@ -3,7 +3,6 @@ package interactivevis
 import org.scalajs.dom
 import dom._
 import org.scalajs.dom.html._
-
 import scalatags.JsDom.all._
 import scalatags.JsDom.TypedTag
 import scalatags.JsDom.short.*

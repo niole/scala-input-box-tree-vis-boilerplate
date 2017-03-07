@@ -14,5 +14,5 @@ lazy val commonSettings = Seq(
 lazy val root = (project in file("."))
 .settings(
   commonSettings,
-  name := "Input Box"
+  name := "Input Box With Interactive Tree Visualization"
 )
