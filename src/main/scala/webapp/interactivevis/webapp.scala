@@ -30,7 +30,7 @@ trait BinaryNode[T] {
   val right: scala.Option[BinaryNode[T]]
 }
 
-class InteractiveTreeVis[T, B <: BinaryNode[T]](header: String, placeholder: String, onClick: (T) => Unit, renderOnDelay: Boolean = false, delay: Int = 500) {
+class InteractiveTreeVis[T : StringTo, B <: BinaryNode[T]](header: String, placeholder: String, onClick: (T) => Unit, renderOnDelay: Boolean = false, delay: Int = 500) {
     val inputBox: InputBox[T] = new InputBox[T](placeholder, header, renderOnDelay, delay)
 
     def getElement(data: T): TypedTag[Div] = {
